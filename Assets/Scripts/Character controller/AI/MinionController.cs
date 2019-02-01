@@ -7,6 +7,8 @@ using UnityEngine.AI;
 [RequireComponent(typeof(CharacterCore),typeof(SeekingTarget))]
 public class MinionController : MonoBehaviour {
 
+
+    //MinionCombatController combatcontroller;
     CharacterCore core;
     SeekingTarget seeker;
     NavMeshAgent agent;
@@ -62,6 +64,9 @@ public class MinionController : MonoBehaviour {
 
     void NewTarget()
     {
+
+        Ray ray = new Ray(transform.position, seeker.currentTarget.transform.position - transform.position);
+
         target = seeker.currentTarget.transform;
     }
 }

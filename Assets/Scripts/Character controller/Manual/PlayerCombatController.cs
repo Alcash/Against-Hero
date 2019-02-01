@@ -8,9 +8,8 @@ public class PlayerCombatController : CombatController {
     CharacterCore core;
 
     
-    float attackColddown = 0;
-    bool canAttack = false;
-    SkeletHolder skeletHolder;
+   
+   
     WeaponType weaponType = WeaponType.Sword;
 
     WeaponController weaponController;
@@ -23,37 +22,26 @@ public class PlayerCombatController : CombatController {
 
         base.Start();
         core = GetComponent<CharacterCore>();
-        skeletHolder = GetComponentInChildren<SkeletHolder>();
-
-        skeletHolder.StartAttackEvent += DealAttack;
-        skeletHolder.EndAttackEvent += EndDealAttack;
+       
 
         InitWeapon();
         
     }
 	
 	// Update is called once per frame
-	void Update () {
+	 void Update () {
 
-        if(attackColddown > 0 )
-        {
-            attackColddown -= Time.deltaTime;
-        }
-        else
-        {
-            canAttack = true;
-            
-        }
+        
 
         
     }
 
-    void DealAttack()
+    public override void DealAttack()
     {
         weaponController.StartAttack();
     }
 
-    void EndDealAttack()
+    public override void EndDealAttack()
     {
         weaponController.EndAttack();
     }
